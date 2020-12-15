@@ -1,0 +1,42 @@
+import java.net.ServerSocket;
+
+
+public class Server 
+{
+	private ServerSocket ss;
+	private out D = new out ("Serv");
+	protected boolean ready = false;
+	public Server(String port)
+	{
+		int pt = -1;
+		try
+		{
+			pt = Integer.parseInt(port);
+			init(pt);
+		}
+		catch(Exception c)
+		{
+			D.warn("Unable to parse the string for an int");
+		}
+	}
+	
+	public Server(int port)
+	{
+		init(port);
+	}
+	
+	private void init(int port)
+	{
+		D.debug("Attempting to bind to port " + port + "...");
+		try
+		{
+			ss = new ServerSocket(port);
+			D.debug("Success!");
+			D.debug("setting up Server thread to accept new connections...");
+		}
+		catch(Exception c)
+		{
+			D.warn("Unable to bind to port. Is something already running on port " + port + "?");
+		}
+	}
+}

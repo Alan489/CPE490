@@ -1,0 +1,23 @@
+//***********************************************************************
+//Alan Decowski
+//S.I.T. 2020F
+//CPE-490 Final Project
+//***********************************************************************
+//debug.Java
+
+//A class to test the NetworkInterface :)
+
+
+public class debug 
+{
+	public static void main(String[] args)
+	{
+		NetworkInterface ni = new NetworkInterface(8527, null);
+		out a = new out("Test1");
+		out b = new out("Test2");
+		out c = new out();
+		a.info("Testing!");
+		b.debug("Test2!");
+		c.warn("Uh-Oh!");
+	}
+}

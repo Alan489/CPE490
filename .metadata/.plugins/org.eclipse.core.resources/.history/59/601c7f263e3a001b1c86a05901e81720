@@ -1,0 +1,55 @@
+//***********************************************************************
+//Alan Decowski
+//S.I.T. 2020F
+//CPE-490 Final Project
+//***********************************************************************
+//NetworkInterface.Java
+
+
+//Creates a way of communicating back and forth between client and server.
+//When this Interface is configured with a NULL for its IP, the interface will instantiate as a server.
+//All communications are very basic. Server will take in requests from clients and then pass it on immediately to all
+//Connected Clients. 
+
+import java.util.ArrayList;
+
+
+public class NetworkInterface 
+{
+	
+	private String IP;
+	private int port;
+	public NetworkServer server;
+	public NetworkClient client;
+	private out D;
+	
+	private Server hnd;
+	private boolean ready = false;
+	
+	
+	//Create interface. If ipro is not null, set up as client, otherwise set up as a server.
+	public NetworkInterface(int pt, String ipro)
+	{
+		D = new out("Net");
+		if (ipro == null)
+		{
+			D.info("Entering server mode...");
+			port = pt;
+			hnd = new Server(pt, this);
+		}
+		else
+		{
+			D.info("Enter client mode...");
+		}
+	}
+	
+	public void setServer(NetworkServer ns)
+	{
+		server = ns;
+		client = (NetworkClient) ns;
+		ready = true;
+	}
+	
+	
+	
+}

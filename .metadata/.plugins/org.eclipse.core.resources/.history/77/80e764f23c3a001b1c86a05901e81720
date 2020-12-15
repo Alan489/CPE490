@@ -1,0 +1,39 @@
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+//***********************************************************************
+//Alan Decowski
+//S.I.T. 2020F
+//CPE-490 Final Project
+//***********************************************************************
+//debug.Java
+
+//A class to test the NetworkInterface :)
+
+
+public class debug implements NetworkServer 
+{
+	public static void main(String[] args) throws UnknownHostException, IOException
+	{
+		NetworkInterface ni = new NetworkInterface(8527, null);
+		ni.setServer(new debug());
+	}
+
+	@Override
+	public void clientConnected(Client j) {
+		System.out.println("Connected!!!!!!!");
+	}
+
+	@Override
+	public void clientDisconnected(Client j) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void receivedData(Client j, String s) {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,81 @@
+//***********************************************************************
+//Alan Decowski
+//S.I.T. 2020F
+//CPE-490 Final Project
+//***********************************************************************
+//Server.Java
+
+//The bread and butter of the NetworkInterface. The server, when activated will create an internal thread object to allow
+//for constant monitoring of the server socket. 
+
+import java.net.ServerSocket;
+import java.util.ArrayList;
+
+
+public class Server 
+{
+	private ServerSocket ss;
+	protected out D = new out ("Serv");
+	protected boolean ready = false;
+	public ArrayList<Client> cls;
+	private internalThread iT;
+	
+	public Server(String port)
+	{
+		int pt = -1;
+		try
+		{
+			pt = Integer.parseInt(port);
+			init(pt);
+		}
+		catch(Exception c)
+		{
+			D.warn("Unable to parse the string for an int");
+		}
+	}
+	
+	public Server(int port)
+	{
+		init(port);
+	}
+	
+	private void init(int port)
+	{
+		D.debug("Attempting to bind to port " + port + "...");
+		try
+		{
+			ss = new ServerSocket(port);
+			D.debug("Success!");
+			D.debug("Setting up Server thread to accept new connections...");
+			iT = new internalThread(ss, this);
+			iT.start();
+			
+		}
+		catch(Exception c)
+		{
+			D.warn("Unable to bind to port. Is something already running on port " + port + "?");
+		}
+	}
+	
+	private class internalThread extends Thread
+	{
+		private ServerSocket ss;
+		private Server S;
+		private out D;
+		public internalThread(ServerSocket A, Server jh)
+		{
+			S = jh;
+			ss = A;
+			D = new out("Thread");
+		}
+		public void run()
+		{
+			D.debug("Test!!");
+			while(true)
+			{
+				this.yield();
+				D.debug("jj!");
+			}
+		}
+	}
+}

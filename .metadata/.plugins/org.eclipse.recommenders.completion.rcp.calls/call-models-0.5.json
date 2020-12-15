@@ -1,0 +1,17 @@
+{
+  "C:\\Users\\Alan489\\CPE490Final\\NetworkInterface\\src": {
+    "location": "C:\\Users\\Alan489\\CPE490Final\\NetworkInterface\\src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027C:\\Users\\Alan489\\CPE490Final\\NetworkInterface\\src\u0027. Skipped."
+  },
+  "C:\\Program Files\\Java\\jre1.8.0_251\\lib\\rt.jar": {
+    "location": "C:\\Program Files\\Java\\jre1.8.0_251\\lib\\rt.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027C:\\Program Files\\Java\\jre1.8.0_251\\lib\\rt.jar\u0027. Neither fingerprint \u002778084b52d745550607baad5255ac2a8280beb668\u0027 nor symbolic name \u0027jre\u0027 are known."
+  },
+  "C:\\Users\\Alan489\\Desktop\\CPE 490 Final\\Network.jar": {
+    "location": "C:\\Users\\Alan489\\Desktop\\CPE 490 Final\\Network.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027C:\\Users\\Alan489\\Desktop\\CPE 490 Final\\Network.jar\u0027. Neither fingerprint \u0027eb7dced464b2f013c40722890aee4d89fc5d5abb\u0027 nor symbolic name \u0027Network\u0027 are known."
+  }
+}
