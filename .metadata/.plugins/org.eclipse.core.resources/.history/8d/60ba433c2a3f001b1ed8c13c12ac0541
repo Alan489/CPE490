@@ -1,0 +1,94 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+
+public class FIOS 
+{
+	private File f;
+	private BufferedReader br;
+	private BufferedWriter bw;
+	public boolean ready = false;
+	private out D = new out("FIOS");
+	public FIOS(File j) {
+		f = j;
+		
+		try {
+			br = new BufferedReader(new FileReader(f));
+			bw = new BufferedWriter(new FileWriter(f,true));
+			ready = true;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	public boolean updateLine(int line, String text)
+	{
+		String[] temp = getAllLines();
+		temp[line] = text;
+		clearFile(true);
+		dumpInto(temp);
+		return true;
+	}
+	private boolean dumpInto(String[] lines)
+	{
+		  try {
+			bw = new BufferedWriter(new FileWriter(f,false));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		  for (int i = 0; i < lines.length; i++)
+		  {
+			  try {
+				bw.write(lines[i]);
+				bw.newLine();
+				bw.flush();
+			} catch (IOException e) {
+				return false;
+			}
+		  }
+		return true;
+	}
+	private boolean clearFile(boolean confirm)
+	{
+		if (!confirm) return false;
+		return true;
+	}
+	public String[] getAllLines()
+	{
+		ArrayList<String> t = new ArrayList<>();
+		  try {
+				br = new BufferedReader(new FileReader(f));
+				String s = br.readLine();
+				while (s != null)
+				{
+					t.add(s);
+					s = br.readLine();
+				}
+				String[] j = new String[t.size()];
+				for (int i = 0; i < t.size(); i++)
+					j[i] = (String)t.get(i);
+				return j
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				return null;
+			}
+	}
+	public String getLine(int num)
+	{
+		return getAllLines()[num];
+	}
+	
+	
+	
+}

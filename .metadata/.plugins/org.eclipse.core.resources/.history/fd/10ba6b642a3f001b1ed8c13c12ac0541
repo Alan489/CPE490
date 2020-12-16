@@ -1,0 +1,132 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
+//***********************************************************************
+//Alan Decowski
+//S.I.T. 2020F
+//CPE-490 Final Project
+//***********************************************************************
+//Main.Java
+
+//Main thread for server. 
+
+public class Main implements NetworkClient, NetworkServer{
+
+	public static void main(String[] args) {
+		new Main();
+	}
+	
+	File f;
+	
+	public Main()
+	{
+		out D = new out("Main");
+		D.info("\nAlan Decowski // CPE-490 // Final Project\n2020 Fall - Offline multi-person document editor");
+		pause(500);
+		D.info("Server-Side");
+		pause(1000);
+		D.warn("Terminal interface only.");
+		pause(1000);
+		Scanner in = new Scanner(System.in);
+		
+		String port;
+		int pt = -1;
+		
+		boolean selected = false;
+		
+		do
+		{
+			pause(500);
+			D.info("Please enter the file path you would like to use. You must have read/write access to the file.");
+			System.out.print("> ");
+			port = in.nextLine();
+			f = new File(port);
+			if (f.exists())
+			{
+				if (!(f.canRead() && f.canWrite()))
+				{
+					D.warn("No Read/Write access. Please try again.");
+				}
+				else
+				{
+					
+				}
+			}
+			else
+			{
+				D.info("File does not exist. Would you like to create a new file? [y/n]");
+				System.out.print(">");
+				String response = in.nextLine();
+				if (response.equalsIgnoreCase("y"))
+				{
+					try {
+						selected = f.createNewFile();
+					} catch (IOException e) {
+					}
+					if (!selected)
+						D.warn("An error occured attempting to create the file. Check if you have read/write access to the parent directory.");
+				}
+				
+			}
+			
+		}while(!selected);
+		
+		//Okay, File has been selected. Now we have to set up a FIOS object to create an interface for the file we want to edit with.
+		
+		FIOS fi = new FIOS(f);
+		fi.getAllLines();
+		
+		do
+		{
+			D.info("Please enter the port number you wish to bind to. (0-65353)");
+			System.out.print("> ");
+			port = in.nextLine();
+			try
+			{
+				pt = -1;
+				pt = Integer.parseInt(port);
+			}
+			catch(Exception c)
+			{
+				D.warn("Please enter a valid number.");
+			}
+			
+		}
+		while(pt == -1);
+		
+		D.info("Okay! Will attempt to start server on 127.0.0.1:"+pt);
+		NetworkInterface ni = new NetworkInterface(pt, this);
+		if (!ni.ready)
+		{
+			D.warn("NetworkInterface did not report a ready state at the conclusion of creation. Please view log for error.");
+			System.exit(-1);
+		}
+		D.info("Successfully created Server.");
+		
+		//Okay, server has been created. Now we are able to handle requests.
+		
+		in.close();
+	}
+
+	public static void pause(long ms)
+	{
+		long end = System.currentTimeMillis() + ms;
+		while (System.currentTimeMillis() < end);
+	}
+
+	public void clientConnected(Client arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void clientDisconnected(Client arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void receivedData(Client arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

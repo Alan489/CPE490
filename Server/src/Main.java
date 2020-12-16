@@ -49,7 +49,7 @@ public class Main implements NetworkClient, NetworkServer{
 				}
 				else
 				{
-					
+					selected = true;
 				}
 			}
 			else
@@ -71,6 +71,10 @@ public class Main implements NetworkClient, NetworkServer{
 			
 		}while(!selected);
 		
+		//Okay, File has been selected. Now we have to set up a FIOS object to create an interface for the file we want to edit with.
+		
+		FIOS fi = new FIOS(f);
+		fi.getAllLines();
 		
 		do
 		{
@@ -97,8 +101,9 @@ public class Main implements NetworkClient, NetworkServer{
 			D.warn("NetworkInterface did not report a ready state at the conclusion of creation. Please view log for error.");
 			System.exit(-1);
 		}
-		D.info("Successfully created Server. Maybe I did this backwards?");
+		D.info("Successfully created Server.");
 		
+		//Okay, server has been created. Now we are able to handle requests, no additional calls from Main thread.
 		
 		in.close();
 	}
