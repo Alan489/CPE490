@@ -1,0 +1,48 @@
+import java.io.File;
+import java.io.IOException;
+
+
+public class DataModel 
+{
+	private out D = new out("DataModel");
+	private File t;
+	public boolean ready = false;
+	
+	public DataModel(File j)
+	{
+		D.info("DataModel loading...");
+		t = j;
+		boolean v = verify();
+		if (!v)
+		{
+			D.warn("Directory is not setup for sharing... Initializing directory...");
+			v = init();
+		}
+		ready = v;
+	}
+	
+	private boolean verify()
+	{
+		boolean veri = true;
+		veri = new File(t.getAbsolutePath()+"/BASE.anex").isFile() & veri;
+		veri = new File(t.getAbsoluteFile()+"/BACK.anex").isFile() & veri;
+		veri = new File(t.getAbsoluteFile()+"/TEMP.anex").isFile() & veri;
+		return veri;
+	}
+	
+	private boolean init()
+	{
+		boolean ini = true;
+		
+		try {
+			ini = new File(t.getAbsoluteFile()+"/TEMP.anex").createNewFile() & ini;
+			ini = new File(t.getAbsolutePath()+"/BASE.anex").createNewFile() & ini;
+			ini = new File(t.getAbsoluteFile()+"/BACK.anex").createNewFile() & ini;
+		} catch (IOException e) {
+			D.warn("Unable to init files.");
+			return false;
+		}
+		return ini;
+	}
+	//C:\Users\Alan489\Desktop\testing
+}

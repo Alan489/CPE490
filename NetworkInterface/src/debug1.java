@@ -18,9 +18,16 @@ public class debug1 implements NetworkClient
 	{
 		NetworkInterface ni = new NetworkInterface(8527, "127.0.0.1", new debug1());
 		Client j = ni.getClient();
-		System.out.println(j.pushLine("TEsting!"));
+		pause(1000);
+		System.out.println(j.pushLine("Z/127/127"));
 	}
 
+	public static void pause(long ms)
+	{
+		long end = System.currentTimeMillis() + ms;
+		while (System.currentTimeMillis() < end);
+	}
+	
 	@Override
 	public void receivedData(Client j, String s) {
 		// TODO Auto-generated method stub

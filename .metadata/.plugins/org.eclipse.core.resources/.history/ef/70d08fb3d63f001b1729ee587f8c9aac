@@ -1,0 +1,35 @@
+import java.io.File;
+
+
+public class DataModel 
+{
+	private out D = new out("DataModel");
+	private File t;
+	public boolean ready = false;
+	
+	public DataModel(File j)
+	{
+		D.info("DataModel loading...");
+		t = j;
+		boolean v = verify();
+		if (!v)
+		{
+			init();
+		}
+	}
+	
+	private boolean verify()
+	{
+		boolean veri = true;
+		veri = new File(t.getAbsolutePath()+"/BASE.anex").isFile() & veri;
+		veri = new File(t.getAbsoluteFile()+"/BACK.anex").isFile() & veri;
+		veri = new File(t.getAbsoluteFile()+"/TEMP.anex").isFile() & veri;
+		return veri;
+	}
+	
+	private void init()
+	{
+		
+	}
+	
+}

@@ -6,6 +6,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//***********************************************************************
+//Alan Decowski
+//S.I.T. 2020F
+//CPE-490 Final Project
+//***********************************************************************
+//FIOS.java
+
+//[F]ile [I]nput [O]utput [S]ystem
+//Incomplete. Replaced with a more data-like file, DataModel.java
+//Left here as an interesting concept, but has a few issues that were corrected with the newer
+//implimentation.
+
 
 public class FIOS 
 {
@@ -29,7 +41,7 @@ public class FIOS
 		
 		
 	}
-	
+	//Very brute force way of doing it.
 	public boolean updateLine(int line, String text)
 	{
 		String[] temp = getAllLines();
@@ -38,6 +50,7 @@ public class FIOS
 		dumpInto(temp);
 		return true;
 	}
+	//I mean, it works?
 	private boolean dumpInto(String[] lines)
 	{
 		  try {
@@ -59,6 +72,10 @@ public class FIOS
 		  }
 		return true;
 	}
+	
+	//Clear the file to rewrite from scratch.
+	//Didnt like this. DataModel handles it better with making BACK.anex, so atleast you have a better way
+	//of backing up files if needbe.
 	private boolean clearFile(boolean confirm)
 	{
 		if (!confirm) return false;
@@ -84,6 +101,7 @@ public class FIOS
 				return null;
 			}
 	}
+	//Yikes.
 	public String getLine(int num)
 	{
 		return getAllLines()[num];
