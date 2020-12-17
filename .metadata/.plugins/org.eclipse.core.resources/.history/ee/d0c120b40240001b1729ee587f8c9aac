@@ -1,0 +1,6 @@
+
+public class DataModel
+{
+	char[][] arr = new char[128][128];
+	
+}

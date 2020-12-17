@@ -1,0 +1,98 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JEditorPane;
+import javax.swing.DropMode;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+
+import javax.swing.JTextArea;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import com.sun.xml.internal.txw2.Document;
+
+
+public class UI {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UI window = new UI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public UI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		frame = new JFrame();
+		//frame.setUndecorated(true);
+		//frame.setAlwaysOnTop(true);
+		//frame.setOpacity(0.5f);
+		frame.setResizable(false);
+		frame.setBounds(100, 100, 765, 475);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		final JTextArea textArea = new JTextArea();
+		textArea.setColumns(128);
+		textArea.setRows(128);
+		textArea.setBounds(10, 11, 739, 424);
+		frame.getContentPane().add(textArea);
+		javax.swing.text.Document d = textArea.getDocument();
+		d.addDocumentListener(new DocumentListener() {
+			
+			public void removeUpdate(DocumentEvent arg0) {
+				ud(arg0);
+			}
+			
+			public void insertUpdate(DocumentEvent arg0) {
+				ud(arg0);
+			}
+			
+			public void changedUpdate(DocumentEvent arg0) {
+				System.out.println("Jacob!");
+				
+			}
+			
+			public void ud(DocumentEvent e)
+			{
+				char[] a = new char[textArea.getText().length()];
+				int r = 0;
+				int remain = e.getOffset();
+				for (int i = 0; i < remain; i++)
+				{
+					if (a[i] == System.lineSeparator().charAt(0))
+					{
+						r++;
+					}
+					remain--;
+				}
+				System.out.println(""+ r + " " + remain);
+			}
+		});
+	}
+}

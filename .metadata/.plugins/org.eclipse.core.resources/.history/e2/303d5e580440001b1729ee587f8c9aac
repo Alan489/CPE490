@@ -1,0 +1,25 @@
+
+public class DataModel
+{
+	char[][] arr = new char[128][128];
+	out D = new out("DataModel");
+	
+	public DataModel(String str)
+	{
+		String[] s = str.split("" + (char)207);
+	}
+	
+	public boolean update(char a, int r, int c)
+	{
+		//Just update the array. The server thread will take care of asking it to write to file.
+		if (r > arr.length || c > arr[0].length)
+		{
+			D.warn("Attempting to update outside of bounds. Req: [" + r + "][" + c + "]");
+			return false;
+		}
+		
+		arr[r][c] = a;
+		
+		return true;
+	}
+}

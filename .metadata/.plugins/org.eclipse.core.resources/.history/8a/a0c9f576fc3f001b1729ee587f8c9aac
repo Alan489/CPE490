@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+//***********************************************************************
+//Alan Decowski
+//S.I.T. 2020F
+//CPE-490 Final Project
+//***********************************************************************
+//Main.Java
+
+//Main thread for client.
+public class Main implements NetworkClient
+{
+	static NetworkInterface ni;
+	static Scanner in = new Scanner(System.in);
+	static out D = new out("Main");
+	public static void main(String[] args) {
+		D.info("Starting...");
+		D.info("No Command-Line Interaction");
+		new Main();
+	}
+	public Main()
+	{
+		
+	}
+	public void receivedData(Client arg0, String arg1) {
+		
+		
+	}
+
+}
