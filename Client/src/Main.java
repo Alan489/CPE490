@@ -14,7 +14,10 @@ public class Main implements NetworkClient
 	static NetworkInterface ni;
 	static Scanner in = new Scanner(System.in);
 	static out D = new out("Main");
+	static Main m;
+	static UI inter = new UI();
 	DataModel dm = new DataModel();
+	DataModel local = new DataModel();
 	public static void main(String[] args) {
 		D.info("Starting...");
 		D.info("No Command-Line Interaction");
@@ -22,11 +25,7 @@ public class Main implements NetworkClient
 	}
 	public Main()
 	{
-		DataModel dd = new DataModel();
-		dd.update('J', 5, 5);
-		DataModel dd1 = new DataModel();
-		dd1.update('A', 6, 6);
-		System.out.println(dd.getDiff(dd1));
+		m = this;
 		new ChooseNetwork(this).frame.setVisible(true);; //This will bring back into connect(String, String, ChooseNetwork)
 	}
 	
@@ -40,7 +39,9 @@ public class Main implements NetworkClient
 			return;
 		}
 		pause(100);
-		ni.c.pushLine("B"+(char)207+"0"+(char)207+"0"+(char)207+"N"+(char)207+"1"+(char)207+"1"+(char)207);
+		inter.frame.setVisible(true);
+		inter.pause = false;
+		//ni.c.pushLine("B"+(char)207+"0"+(char)207+"0"+(char)207+"N"+(char)207+"1"+(char)207+"1"+(char)207);
 	}
 	
 	public static void pause(long ms)
@@ -50,7 +51,10 @@ public class Main implements NetworkClient
 	}
 	
 	public void receivedData(Client arg0, String arg1) {
+		inter.pause = true;
 		String[] tt = arg1.split(""+ (char)207);
+		System.out.println(arg1);
+		if (arg1.equals("")) return;
 		if (tt.length %3 != 0)
 		{
 			D.warn("Bad data received from server.");
@@ -58,8 +62,13 @@ public class Main implements NetworkClient
 		}
 		for (int i = 0; i < tt.length; i+=3)
 		{
-			dm.update(tt[i].charAt(0), Integer.parseInt(tt[i+1]), Integer.parseInt(tt[i+2]));
+			if (tt[i].charAt(0) == (char)2)
+				dm.update((char)0, Integer.parseInt(tt[i+1]), Integer.parseInt(tt[i+2]));
+			else
+				dm.update(tt[i].charAt(0), Integer.parseInt(tt[i+1]), Integer.parseInt(tt[i+2]));
 		}
+		inter.pause = false;
+		//System.out.println(dm.get(0, 0));
 	}
 
 }

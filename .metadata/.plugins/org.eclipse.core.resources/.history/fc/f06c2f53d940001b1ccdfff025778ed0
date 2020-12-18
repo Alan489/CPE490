@@ -1,0 +1,20 @@
+
+public class Debug 
+{
+	public static void main(String[] args)
+	{
+		DataModel t1 = new DataModel();
+		DataModel t2 = new DataModel();
+		String test = "Testing!" + (char)10 + "World";
+		String[] s= test.split(""+(char)10);
+		for (int r = 0; r < s.length; r++)
+		{
+			char[] t = s[r].toCharArray();
+			for (int c = 0; c < t.length; c++)
+			{
+				t1.update(t[c], r, c);
+				t2.update(t[c], r, c)
+			}
+		}
+	}
+}

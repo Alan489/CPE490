@@ -19,7 +19,7 @@ public class debug1 implements NetworkClient
 		NetworkInterface ni = new NetworkInterface(8527, "127.0.0.1", new debug1());
 		Client j = ni.getClient();
 		pause(1000);
-		System.out.println(j.pushLine("Z/127/127"));
+		System.out.println(j.pushLine("Z"+(char)207+"0"+(char)207+"0"));
 	}
 
 	public static void pause(long ms)

@@ -1,0 +1,11 @@
+
+public class Debug 
+{
+	public static void main(String[] args)
+	{
+		DataModel t1 = new DataModel();
+		DataModel t2 = new DataModel();
+		String test = "Testing!";
+		
+	}
+}

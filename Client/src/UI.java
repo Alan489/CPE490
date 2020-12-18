@@ -17,9 +17,9 @@ import com.sun.xml.internal.txw2.Document;
 
 
 public class UI {
-
-	private JFrame frame;
-
+	JTextArea textArea;
+	JFrame frame;
+	boolean pause = true;
 	/**
 	 * Launch the application.
 	 */
@@ -57,7 +57,7 @@ public class UI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		final JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
 		textArea.setColumns(128);
 		textArea.setRows(128);
 		textArea.setBounds(10, 11, 739, 424);
@@ -78,7 +78,20 @@ public class UI {
 			
 			public void ud(DocumentEvent e)
 			{
-				
+				if (pause) return;
+				DataModel temp = new DataModel();
+				String[] s= textArea.getText().split(""+(char)10);
+				for (int r = 0; r < s.length; r++)
+				{
+					char[] t = s[r].toCharArray();
+					for (int c = 0; c < t.length; c++)
+					{
+						temp.update(t[c], r, c);
+					}
+				}
+				DataModel diff = Main.m.dm.getDiff(temp);
+				//System.out.println(diff);
+				Main.ni.c.pushLine(diff.toString());
 			}
 		});
 	}

@@ -84,14 +84,14 @@ public class DataModel
 			ini = new File(t.getAbsoluteFile()+"/TEMP.anex").createNewFile() & ini;
 			ini = new File(t.getAbsolutePath()+"/BASE.anex").createNewFile() & ini;
 			ini = new File(t.getAbsoluteFile()+"/BACK.anex").createNewFile() & ini;
-			for (int r = 0; r < arr.length; r++)
+			/*for (int r = 0; r < arr.length; r++)
 			{
 				for (int c = 0; c < arr[0].length; c++)
 				{
 					update(' ', r, c);
 				}
 			}
-			write();
+			write();*/
 		} catch (IOException e) {
 			D.warn("Unable to init files.");
 			return false;

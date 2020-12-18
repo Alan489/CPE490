@@ -148,7 +148,10 @@ public class Main implements NetworkClient, NetworkServer{
 		}
 		for (int i = 0; i < tt.length; i+=3)
 		{
-			dm.update(tt[i].charAt(0), Integer.parseInt(tt[i+1]), Integer.parseInt(tt[i+2]));
+			if (tt[i].charAt(0) == (char)2)
+				dm.update((char)0, Integer.parseInt(tt[i+1]), Integer.parseInt(tt[i+2]));
+			else
+				dm.update(tt[i].charAt(0), Integer.parseInt(tt[i+1]), Integer.parseInt(tt[i+2]));
 		}
 		dm.write();
 		
